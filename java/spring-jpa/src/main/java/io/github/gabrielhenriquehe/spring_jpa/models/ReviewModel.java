@@ -1,5 +1,6 @@
 package io.github.gabrielhenriquehe.spring_jpa.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -27,4 +28,9 @@ public class ReviewModel implements Serializable {
 
     @Column(nullable = false)
     private String comment;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToOne
+    @JoinColumn(name = "book_id")
+    private BookModel book;
 }
